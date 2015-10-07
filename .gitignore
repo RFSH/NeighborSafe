@@ -15,3 +15,11 @@ server.pid
 *.eml
 /dist/
 .cache
+
+.idea/
+.settings/
+h2:tcp:/
+
+.DS_Store
+
+.sass-cache/
