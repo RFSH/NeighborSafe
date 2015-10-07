@@ -1,0 +1,34 @@
+/* line 1, ../../app/assets/sass/guest.scss */
+body {
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 13px;
+  background: none !important;
+  color: #3f3f3f;
+  height: inherit !important;
+}
+
+/* line 9, ../../app/assets/sass/guest.scss */
+::selection {
+  background-color: #2185d0;
+  color: #fefefe;
+}
+
+/* line 14, ../../app/assets/sass/guest.scss */
+.main-container {
+  margin-top: 2em;
+}
+
+/* line 18, ../../app/assets/sass/guest.scss */
+a:hover {
+  color: #2185d0 !important;
+}
+
+/* line 22, ../../app/assets/sass/guest.scss */
+html {
+  background: url("/assets/images/back.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: inherit !important;
+}

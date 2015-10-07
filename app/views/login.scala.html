@@ -1,0 +1,109 @@
+@(form: play.data.Form[LoginForm])
+<html>
+    <head>
+        <title>NeighborSafe</title>
+        <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link rel="apple-touch-icon" sizes="57x57" href="@routes.Assets.at("images/favicons/apple-touch-icon-57x57.png")">
+        <link rel="apple-touch-icon" sizes="60x60" href="@routes.Assets.at("images/favicons/apple-touch-icon-60x60.png")">
+        <link rel="apple-touch-icon" sizes="72x72" href="@routes.Assets.at("images/favicons/apple-touch-icon-72x72.png")">
+        <link rel="apple-touch-icon" sizes="76x76" href="@routes.Assets.at("images/favicons/apple-touch-icon-76x76.png")">
+        <link rel="apple-touch-icon" sizes="114x114" href="@routes.Assets.at("images/favicons/apple-touch-icon-114x114.png")">
+        <link rel="apple-touch-icon" sizes="120x120" href="@routes.Assets.at("images/favicons/apple-touch-icon-120x120.png")">
+        <link rel="apple-touch-icon" sizes="144x144" href="@routes.Assets.at("images/favicons/apple-touch-icon-144x144.png")">
+        <link rel="apple-touch-icon" sizes="152x152" href="@routes.Assets.at("images/favicons/apple-touch-icon-152x152.png")">
+        <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicons/favicon-32x32.png")" sizes="32x32">
+        <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicons/favicon-96x96.png")" sizes="96x96">
+        <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicons/favicon-16x16.png")" sizes="16x16">
+        <link rel="manifest" href="@routes.Assets.at("images/favicons/manifest.json")">
+        <meta name="msapplication-TileColor" content="#2b5797">
+        <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+        <meta name="theme-color" content="#024375">
+
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/jquery.toastmessage.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/semantic.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/login.css")">
+
+        <script src="@routes.Assets.at("js/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("js/jquery.toastmessage.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("js/semantic.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("js/login.js")" type="text/javascript"></script>
+        @if(flash.contains("success")) {
+            <script>
+                $(function(){
+                    message("@flash.get("success")", "success");
+                });
+            </script>
+        }
+        @if(flash.contains("warning")) {
+            <script>
+                $(function(){
+                    message("@flash.get("warning")", "warning");
+                });
+            </script>
+        }
+    </head>
+    <body>
+        <div class="ui container main-container">
+            <div class="p-login">
+                <div class="ui raised segment">
+                    <div class="logo">
+                        <h1>NeighborSafe</h1>
+                    </div>
+                    @helper.form(action = routes.Application.authenticate, 'class -> "ui form glass") {
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="icon user"></i>
+                                <input type="text" name="username" placeholder="Username" value="@form("username").value">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="icon key"></i>
+                                <input type="password" name="password" placeholder="password">
+                            </div>
+                        </div>
+                        @if(form.hasGlobalErrors) {
+                            <div class="ui error message">
+                            @form.globalErrors
+                            </div>
+                        }
+                        @if(form.errors.size() > 0) {
+                            <div class="error-message">
+                                <ul>
+                                @for((key, value) <- form.errors) {
+                                    <li>
+                                    @if(key.toString() == "username") {
+                                        Username is empty.
+                                    } else {
+                                        @if(key.toString() == "password") {
+                                            Password is empty.
+                                        } else {
+                                            @for(err <- value) {
+                                                @err.message().toString()
+                                            }
+                                        }
+                                    }
+                                    </li>
+                                }
+                                </ul>
+                            </div>
+                        }
+                        <button class="ui button large blue login-btn" type="submit">Login</button>
+                    }
+                    <div class="ui divider"></div>
+                    <div class="ui message success">
+                        Let's be safe together.
+                        @*<br/>*@
+                        @*<i class="down arrow circle icon"></i>*@
+                    </div>
+                    <a href="@routes.Application.signup" class="create account">Create new account</a>
+
+                </div>
+                @*<div class="raised segment ui">*@
+                    @*<i class="copyright icon"></i>*@
+                    @*<span>2015, RF</span>*@
+                @*</div>*@
+            </div>
+        </div>
+    </body>
+</html>

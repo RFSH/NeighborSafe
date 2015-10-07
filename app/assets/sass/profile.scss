@@ -1,0 +1,36 @@
+.p-profile{
+
+  .dummy{
+    margin: 4em 0;
+  }
+
+  dl{
+    dt{
+      display: inline-block;
+      margin: 0 0 0 0.2em;
+      padding: 0;
+
+    }
+    dd{
+      padding: 0;
+      margin: 0.2em 0 0 0;
+      float: left;
+    }
+
+  }
+
+  .logo {
+    text-align: center;
+    margin: 2em auto;
+    color: #005f81
+  }
+  .dividing.header {
+    color: #005f81;
+    margin-top: 2em;
+  }
+  
+  #submit-btn{
+    margin-left: 40%;
+  }
+
+}

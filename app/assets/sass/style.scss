@@ -1,0 +1,70 @@
+
+html {
+  background: url("/assets/images/back.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: inherit !important;
+}
+
+body{
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 13px;
+  background: none !important;
+}
+
+
+.ui.container.main-container{
+  margin-top: 2em;
+  max-width: 900px !important;
+}
+
+$blue : #2185d0;
+
+.clearfix{
+  clear: both;
+}
+
+.rf-footer{
+  text-align: center;
+}
+
+::selection{
+  background-color: #2185d0;
+  color: #fefefe;
+}
+
+.raised.segment{
+  background: rgba(230, 240, 255, 0.93) !important;
+  border: 2px dashed transparent;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+
+.menu{
+  background: rgba(33, 133, 208, 0.93) !important;
+  border: 2px dashed transparent;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+
+.rf-help{
+  font-size: 0.8em;
+  color: #787878;
+}
+
+
+@import "search";
+@import "profile";
+@import "changepass";

@@ -1,0 +1,264 @@
+@(form: Form[SignupForm])
+<html>
+    <head>
+        <title>NeighborSafe</title>
+        <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link rel="apple-touch-icon" sizes="57x57" href="@routes.Assets.at("images/favicons/apple-touch-icon-57x57.png")">
+        <link rel="apple-touch-icon" sizes="60x60" href="@routes.Assets.at("images/favicons/apple-touch-icon-60x60.png")">
+        <link rel="apple-touch-icon" sizes="72x72" href="@routes.Assets.at("images/favicons/apple-touch-icon-72x72.png")">
+        <link rel="apple-touch-icon" sizes="76x76" href="@routes.Assets.at("images/favicons/apple-touch-icon-76x76.png")">
+        <link rel="apple-touch-icon" sizes="114x114" href="@routes.Assets.at("images/favicons/apple-touch-icon-114x114.png")">
+        <link rel="apple-touch-icon" sizes="120x120" href="@routes.Assets.at("images/favicons/apple-touch-icon-120x120.png")">
+        <link rel="apple-touch-icon" sizes="144x144" href="@routes.Assets.at("images/favicons/apple-touch-icon-144x144.png")">
+        <link rel="apple-touch-icon" sizes="152x152" href="@routes.Assets.at("images/favicons/apple-touch-icon-152x152.png")">
+        <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicons/favicon-32x32.png")" sizes="32x32">
+        <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicons/favicon-96x96.png")" sizes="96x96">
+        <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicons/favicon-16x16.png")" sizes="16x16">
+        <link rel="manifest" href="@routes.Assets.at("images/favicons/manifest.json")">
+        <meta name="msapplication-TileColor" content="#2b5797">
+        <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+        <meta name="theme-color" content="#024375">
+
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/jquery.toastmessage.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/semantic.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/signup.css")">
+
+        <script src="@routes.Assets.at("js/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("js/jquery.toastmessage.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("js/semantic.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("js/signup.js")" type="text/javascript"></script>
+        @if(flash.contains("error")) {
+            <script>
+                $(function(){
+                    message("@flash.get("error")", "error");
+                });
+            </script>
+        }
+    </head>
+    <body>
+        <div class="ui container main-container">
+            <div class="signup-container">
+                <div class="ui raised segment p-singup">
+                    <a href="/">
+                        <div class="logo">
+                            <h1>NeighborSafe</h1>
+                        </div>
+                    </a>
+                    @helper.form(action = routes.Application.createNeighbor, 'class -> "signup-form") {
+                        <h4 class="ui dividing header">Basic Information</h4>
+                        <div class="form-step ui form active" id="step-1">
+                            <div class="three fields">
+                                <div class="field">
+                                    <label for="username">Username</label>
+                                    <input type="text" required="required" name="username" id="username" placeholder="Username" value="@form("username").value" />
+                                    @if(form("username").hasErrors) {
+                                        <div class="ui basic red pointing prompt label transition visible">
+
+                                        @{
+                                            form("username").errors.map { error => error.message }
+                                        }
+                                        </div>
+                                    }
+                                </div>
+                                <div class="field">
+                                    <label for="password">Password</label>
+                                    <input type="password" required="required" name="password" id="password" placeholder="Password"/>
+                                    @if(form("password").hasErrors) {
+                                        <div class="ui basic red pointing prompt label transition visible">
+
+                                        @{
+                                            form("password").errors.map { error => error.message }
+                                        }
+                                        </div>
+                                    }
+                                </div>
+                                <div class="field">
+                                    <label for="rePassword">Confirm Password</label>
+                                    <input type="password" required="required" name="re_password" id="re_password" placeholder="Confirm Password" />
+                                    @if(form("re_password").hasErrors) {
+                                        <div class="ui basic red pointing prompt label transition visible">
+
+                                        @{
+                                            form("re_password").errors.map { error => error.message }
+                                        }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="three fields">
+                                <div class="field">
+                                    <label for="zipCode">Zip Code</label>
+                                    <input type="text" required="required" name="zipCode" id="zipCode" placeholder="Zip Code" value="@form("zipCode").value" />
+                                    @if(form("zipCode").hasErrors) {
+                                        <div class="ui basic red pointing prompt label transition visible">
+
+                                        @{
+                                            form("zipCode").errors.map { error => error.message }
+                                        }
+                                        </div>
+                                    }
+                                </div>
+                                <div class="field">
+                                    <label for="address">Address</label>
+                                    <input type="text" required="required" name="address" id="address" placeholder="Address" value="@form("address").value" />
+                                    @if(form("address").hasErrors) {
+                                        <div class="ui basic red pointing prompt label transition visible">
+                                        @{
+                                            form("address").errors.map { error => error.message }
+                                        }
+                                        </div>
+                                    }
+                                </div>
+                                <div class="field">
+                                    <label for="homeNumber">Home Number</label>
+                                    <input type="text" required="required" name="homeNumber" id="homeNumber" placeholder="(123) 456-7890" value="@form("homeNumber").value" />
+                                    @if(form("homeNumber").hasErrors) {
+                                        <div class="ui basic red pointing prompt label transition visible">
+                                        @{
+                                            form("homeNumber").errors.map { error => error.message }
+                                        }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="medicalCond">Medical Condition</label>
+                                <textarea name="medicalCond" rows="2" id="medicalCond" placeholder="Describe any Medical Conditions your family have. (e.g. We all have Cancer and about to die.)">@form("medicalCond").value</textarea>
+                                @if(form("medicalCond").hasErrors) {
+                                    <div class="ui basic red pointing prompt label transition visible">
+                                    @{
+                                        form("medicalCond").errors.map { error => error.message }
+                                    }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <h4 class="ui dividing header">Family Information</h4>
+                        <div class="form-step ui form" id="step-2">
+                            <p>You cannot change family information after signing up. Be careful!</p>
+                            <div class="family-members">
+                                <div class="fields family-member" id="member-1">
+                                    <div class="four wide field">
+                                        <label>Name</label>
+                                        <input type="text" name="name_1" placeholder="Name"/>
+                                    </div>
+                                    <div class="four wide field">
+                                        <label>Email</label>
+                                        <input type="text" name="email_1" placeholder="Email"/>
+                                    </div>
+                                    <div class="four wide field">
+                                        <label>Cell Number</label>
+                                        <input type="text" name="cell_1" placeholder="Cell Number"/>
+                                    </div>
+                                    <div class="two wide field">
+                                        <label>Age</label>
+                                        <input type="number" name="age_1" placeholder="Age"/>
+                                    </div>
+                                    @*<div class="three wide field">*@
+                                    @*<label>Remove Member</label>*@
+                                    @*<div class="ui button red remove-family icon"><i class="icon remove"></i></div>*@
+                                    @*</div>*@
+                                </div>
+                            </div>
+                            <div class="dummy"></div>
+                            <div class="ui buttons tiny">
+                                <div class="ui red button small" id="remove-family">Remove Last Member</div>
+                                <div class="ui blue button small add-family" id="add-family">Add Another Member</div>
+                            </div>
+                        </div>
+                        <h4 class="ui dividing header">Abilities and Stuff</h4>
+                        <div class="form-step three ui form" id="step-3">
+                            <div class="three fields">
+                                <div class="field">
+                                    <label for="cpr">Can you perform CPR?</label>
+                                    @helper.checkbox(form("cpr"), '_label -> "Yes", 'class -> "checkbox")
+                                </div>
+                                <div class="field">
+                                    <label for="first_aid">Do you know basic first aid?</label>
+                                    @helper.checkbox(form("firstAid"), '_label -> "Yes", 'class -> "checkbox")
+                                </div>
+                                <div class="field">
+                                    <label for="otherMedTrainings">Other Medical Training?</label>
+                                    <input type="text" name="otherMedTrainings" id="otherMedTrainings" placeholder="Other Medical Trainings" value="@form("otherMedTrainings").value" />
+                                    @if(form("otherMedTrainings").hasErrors) {
+                                        <div class="ui basic red pointing prompt label transition visible">
+
+                                        @{
+                                            form("otherMedTrainings").errors.map { error => error.message }
+                                        }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="languages">Languages you can be an interpreter</label>
+                                <textarea name="languages" rows="2" id="languages" placeholder="Name of the Languages. Sperate with comma.">@form("languages").value</textarea>
+                            </div>
+                        </div>
+                        <h4 class="ui dividing header">Utility and Supplies</h4>
+                        <div class="form-step ui form" id="step-4">
+                            <div class="three fields">
+                                <div class="field">
+                                    <label for="utilityGaz">Where's your gaz Utility Shut-off?</label>
+                                    <input type="text" name="utilityGaz" id="utilityGaz" placeholder="NE Corner" value="@form("utilityGaz").value" >
+                                    @if(form("utilityGaz").hasErrors) {
+                                        <div class="ui basic red pointing prompt label transition visible">
+
+                                        @{
+                                            form("utilityGaz").errors.map { error => error.message }
+                                        }
+                                        </div>
+                                    }
+                                </div>
+                                <div class="field">
+                                    <label for="utilityElectric">Where's your Electric Utility Shut-off?</label>
+                                    <input type="text" name="utilityElectric" id="utilityElectric" placeholder="NW Corner" value="@form("utilityElectric").value" >
+                                    @if(form("utilityElectric").hasErrors) {
+                                        <div class="ui basic red pointing prompt label transition visible">
+
+                                        @{
+                                            form("utilityElectric").errors.map { error => error.message }
+                                        }
+                                        </div>
+                                    }
+                                </div>
+                                <div class="field">
+                                    <label for="utilityWater">Where's your Water Utility Shut-off?</label>
+                                    <input type="text" name="utilityWater" id="utilityWater" placeholder="West Front" value="@form("utilityWater").value" >
+                                    @if(form("utilityWater").hasErrors) {
+                                        <div class="ui basic red pointing prompt label transition visible">
+
+                                        @{
+                                            form("utilityWater").errors.map { error => error.message }
+                                        }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="three fields">
+                                <div class="field">
+                                    <label for="haveGenerator">Do you have generator?</label>
+                                    @helper.checkbox(form("haveGenerator"), '_label -> "Yes", 'class -> "checkbox")
+                                </div>
+                                <div class="field">
+                                    <label for="haveFood">Do you have food and water supplies?</label>
+                                    @helper.checkbox(form("haveFood"), '_label -> "Yes", 'class -> "checkbox")
+                                </div>
+                                <div class="field">
+                                    <label for="otherMedSupplies">Any other medical supplies?</label>
+                                    <input type="text" name="otherMedSupplies" id="otherMedSupplies" placeholder="Seperate With Commas" value="@form("otherMedSupplies").value" />
+                                </div>
+                            </div>
+                        </div>
+                        <input id="submit-btn" class="ui button right floated green" type="submit" value="Submit"/>
+                        <div class="dummy"></div>
+                    }
+                </div>
+                <div class="ui raised segment rf-footer">
+                    <i class="copyright icon"></i>
+                    <span>2015, RF</span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

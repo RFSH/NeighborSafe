@@ -1,0 +1,242 @@
+@(form: Form[ProfileForm], neighbor: Neighbor)
+
+    @base("NeighborSafe | Profile") {
+        <div class="p-profile">
+            <div class="ui menu inverted blue">
+                <a class="item" href="/">Home</a>
+                <a class="item active" href="@routes.Application.profile()">Profile (@neighbor.username)</a>
+                <a class="item" href="@routes.Application.Password()">Change Password</a>
+                <div class="right menu">
+                    <a class="item" href="@routes.Application.logout()">Logout</a>
+                </div>
+            </div>
+            <div class="ui raised segment">
+            @helper.form(action = routes.Application.updateProfile, 'class -> "signup-form", 'method -> "post") {
+                <h4 class="ui dividing header">Basic Information</h4>
+                <div class="form-step ui form active" id="step-1">
+                    <div class="three fields">
+                        <div class="field">
+                            <label for="zipCode">Zip Code</label>
+                            <input type="text" required="required" name="zipCode" id="zipCode" placeholder="Zip Code" value="@form("zipCode").value" />
+                            @if(form("zipCode").hasErrors) {
+                                <div class="ui basic red pointing prompt label transition visible">
+
+                                @{
+                                    form("zipCode").errors.map { error => error.message }
+                                }
+                                </div>
+                            }
+                        </div>
+                        <div class="field">
+                            <label for="address">Address</label>
+                            <input type="text" required="required" name="address" id="address" placeholder="Address" value="@form("address").value" />
+                            @if(form("address").hasErrors) {
+                                <div class="ui basic red pointing prompt label transition visible">
+                                @{
+                                    form("address").errors.map { error => error.message }
+                                }
+                                </div>
+                            }
+                        </div>
+                        <div class="field">
+                            <label for="homeNumber">Home Number</label>
+                            <input type="text" required="required" name="homeNumber" id="homeNumber" placeholder="(123) 456-7890" value="@form("homeNumber").value" />
+                            @if(form("homeNumber").hasErrors) {
+                                <div class="ui basic red pointing prompt label transition visible">
+                                @{
+                                    form("homeNumber").errors.map { error => error.message }
+                                }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="medicalCond">Medical Condition</label>
+                        <textarea name="medicalCond" rows="2" id="medicalCond" placeholder="Describe any Medical Conditions your family have. (e.g. We all have Cancer and about to die.)">@form("medicalCond").value</textarea>
+                        @if(form("medicalCond").hasErrors) {
+                            <div class="ui basic red pointing prompt label transition visible">
+                            @{
+                                form("medicalCond").errors.map { error => error.message }
+                            }
+                            </div>
+                        }
+                    </div>
+                </div>
+                <h4 class="ui dividing header">Abilities and Stuff</h4>
+                <div class="form-step three ui form" id="step-3">
+                    <div class="three fields">
+                        <div class="field">
+                            <label for="cpr">Can you perform CPR?</label>
+                            @helper.checkbox(form("cpr"), '_label -> "Yes", 'class -> "checkbox")
+                        </div>
+                        <div class="field">
+                            <label for="first_aid">Do you know basic first aid?</label>
+                            @helper.checkbox(form("firstAid"), '_label -> "Yes", 'class -> "checkbox")
+                        </div>
+                        <div class="field">
+                            <label for="otherMedTrainings">Other Medical Training?</label>
+                            <input type="text" name="otherMedTrainings" id="otherMedTrainings" placeholder="Other Medical Trainings" value="@form("otherMedTrainings").value" />
+                            @if(form("otherMedTrainings").hasErrors) {
+                                <div class="ui basic red pointing prompt label transition visible">
+
+                                @{
+                                    form("otherMedTrainings").errors.map { error => error.message }
+                                }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="languages">Languages you can be an interpreter</label>
+                        <textarea name="languages" rows="2" id="languages" placeholder="Name of the Languages. Sperate with comma.">@form("languages").value</textarea>
+                    </div>
+                </div>
+                <h4 class="ui dividing header">Utility and Supplies</h4>
+                <div class="form-step ui form" id="step-4">
+                    <div class="three fields">
+                        <div class="field">
+                            <label for="utilityGaz">Where's your gaz Utility Shut-off?</label>
+                            <input type="text" name="utilityGaz" id="utilityGaz" placeholder="NE Corner" value="@form("utilityGaz").value" >
+                            @if(form("utilityGaz").hasErrors) {
+                                <div class="ui basic red pointing prompt label transition visible">
+
+                                @{
+                                    form("utilityGaz").errors.map { error => error.message }
+                                }
+                                </div>
+                            }
+                        </div>
+                        <div class="field">
+                            <label for="utilityElectric">Where's your Electric Utility Shut-off?</label>
+                            <input type="text" name="utilityElectric" id="utilityElectric" placeholder="NW Corner" value="@form("utilityElectric").value" >
+                            @if(form("utilityElectric").hasErrors) {
+                                <div class="ui basic red pointing prompt label transition visible">
+
+                                @{
+                                    form("utilityElectric").errors.map { error => error.message }
+                                }
+                                </div>
+                            }
+                        </div>
+                        <div class="field">
+                            <label for="utilityWater">Where's your Water Utility Shut-off?</label>
+                            <input type="text" name="utilityWater" id="utilityWater" placeholder="West Front" value="@form("utilityWater").value" >
+                            @if(form("utilityWater").hasErrors) {
+                                <div class="ui basic red pointing prompt label transition visible">
+
+                                @{
+                                    form("utilityWater").errors.map { error => error.message }
+                                }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="three fields">
+                        <div class="field">
+                            <label for="haveGenerator">Do you have generator?</label>
+                            @helper.checkbox(form("haveGenerator"), '_label -> "Yes", 'class -> "checkbox")
+                        </div>
+                        <div class="field">
+                            <label for="haveFood">Do you have food and water supplies?</label>
+                            @helper.checkbox(form("haveFood"), '_label -> "Yes", 'class -> "checkbox")
+                        </div>
+                        <div class="field">
+                            <label for="otherMedSupplies">Any other medical supplies?</label>
+                            <input type="text" name="otherMedSupplies" id="otherMedSupplies" placeholder="Seperate With Commas" value="@form("otherMedSupplies").value" />
+                        </div>
+                    </div>
+                </div>
+                <input id="submit-btn" class="ui button large green" type="submit" value="Save Changes"/>
+
+                <h4 class="ui dividing header">Family Information <span class="rf-help">
+                    | Ha!You cannot change these.</span></h4>
+                @if(!neighbor.profile.peopleList.isEmpty) {
+                    <table class="ui celled table">
+                        <thead>
+                            <tr>
+                                <th>Is Adult?</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Email</th>
+                                <th>Cell Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @for(people <- neighbor.profile.peopleList) {
+                            <tr>
+                                <td><i class="icon @if(people.isAdult) {green checkmark} else {red remove}"></i></td>
+                                <td>@people.name</td>
+                                <td>@people.age</td>
+                                <td>@people.email</td>
+                                <td>@people.cellNumber</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                } else {
+                    <div class="ui icon floating small message yellow">
+                        <i class="meh icon"></i>
+                        <div class="content">
+                            <div class="header">404 Family Member Not Found.</div>
+                            <p>Nobody lives here.</p>
+                        </div>
+                    </div>
+                }
+
+
+                <div class="ui dividing header">Dangerous Stuff</div>
+                <div class="delete-acc ui button left floated red">
+                    Remove Account
+                </div>
+                <div class="dummy"></div>
+
+            }
+            </div>
+            <div class="ui raised segment rf-footer">
+                <i class="copyright icon"></i>
+                <span>2015, RF, You think all rights are reserverd? Nah.</span>
+            </div>
+        </div>
+
+        <div class="ui small basic modal transition" id="delete-modal">
+            <div class="ui icon header">
+                <i class="warning red icon"></i>
+                Are you sure?
+            </div>
+            <div class="content">
+                <p>Deleting your account means deleting your existence on this site(or maybe on earth)</p>
+            </div>
+            <div class="actions">
+            @helper.form(action = routes.Application.deleteProfile) {
+                <div class="ui red basic cancel inverted button">
+                    <i class="remove icon"></i>
+                    No
+                </div>
+                <button class="ui green ok inverted button" type="submit">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </button>
+            }
+            </div>
+
+        </div>
+
+        <div class="ui modal" id="change-pass">
+            <div class="ui modal">
+                <i class="close icon"></i>
+                <div class="header">
+                    Change Password
+                </div>
+                @helper.form(action = routes.Application.changePassword) {
+                    <div class="content">
+
+                    </div>
+                    <div class="actions">
+                        <div class="ui button">Cancel</div>
+                        <button class="ui button" type="submit">Change</button>
+                    </div>
+                }
+            </div>
+        </div>
+
+    }

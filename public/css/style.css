@@ -1,0 +1,156 @@
+/* line 2, ../../app/assets/sass/style.scss */
+html {
+  background: url("/assets/images/back.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: inherit !important;
+}
+
+/* line 11, ../../app/assets/sass/style.scss */
+body {
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 13px;
+  background: none !important;
+}
+
+/* line 18, ../../app/assets/sass/style.scss */
+.ui.container.main-container {
+  margin-top: 2em;
+  max-width: 900px !important;
+}
+
+/* line 25, ../../app/assets/sass/style.scss */
+.clearfix {
+  clear: both;
+}
+
+/* line 29, ../../app/assets/sass/style.scss */
+.rf-footer {
+  text-align: center;
+}
+
+/* line 33, ../../app/assets/sass/style.scss */
+::selection {
+  background-color: #2185d0;
+  color: #fefefe;
+}
+
+/* line 38, ../../app/assets/sass/style.scss */
+.raised.segment {
+  background: rgba(230, 240, 255, 0.93) !important;
+  border: 2px dashed transparent;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+
+/* line 50, ../../app/assets/sass/style.scss */
+.menu {
+  background: rgba(33, 133, 208, 0.93) !important;
+  border: 2px dashed transparent;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+
+/* line 62, ../../app/assets/sass/style.scss */
+.rf-help {
+  font-size: 0.8em;
+  color: #787878;
+}
+
+/* line 3, ../../app/assets/sass/search.scss */
+.p-search .pagination {
+  margin: 2em 0 1em 0 !important;
+}
+@media screen and (min-width: 500px) {
+  /* line 3, ../../app/assets/sass/search.scss */
+  .p-search .pagination {
+    margin-left: 35% !important;
+  }
+}
+/* line 10, ../../app/assets/sass/search.scss */
+.p-search .search-input {
+  border: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+/* line 16, ../../app/assets/sass/search.scss */
+.p-search #open-advanced {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  width: 198px !important;
+}
+/* line 24, ../../app/assets/sass/search.scss */
+.p-search dl dt {
+  display: inline-block;
+  margin: 0 0 0 0.2em;
+  padding: 0;
+}
+/* line 30, ../../app/assets/sass/search.scss */
+.p-search dl dd {
+  padding: 0;
+  margin: 0.2em 0 0 0;
+  float: left;
+}
+/* line 38, ../../app/assets/sass/search.scss */
+.p-search #hidden-parts {
+  margin-top: 0 !important;
+}
+/* line 42, ../../app/assets/sass/search.scss */
+.p-search .footer-icon {
+  color: #aa0000;
+  font-size: 1em;
+}
+
+/* line 3, ../../app/assets/sass/profile.scss */
+.p-profile .dummy {
+  margin: 4em 0;
+}
+/* line 8, ../../app/assets/sass/profile.scss */
+.p-profile dl dt {
+  display: inline-block;
+  margin: 0 0 0 0.2em;
+  padding: 0;
+}
+/* line 14, ../../app/assets/sass/profile.scss */
+.p-profile dl dd {
+  padding: 0;
+  margin: 0.2em 0 0 0;
+  float: left;
+}
+/* line 22, ../../app/assets/sass/profile.scss */
+.p-profile .logo {
+  text-align: center;
+  margin: 2em auto;
+  color: #005f81;
+}
+/* line 27, ../../app/assets/sass/profile.scss */
+.p-profile .dividing.header {
+  color: #005f81;
+  margin-top: 2em;
+}
+/* line 32, ../../app/assets/sass/profile.scss */
+.p-profile #submit-btn {
+  margin-left: 40%;
+}
+
+/* line 2, ../../app/assets/sass/changepass.scss */
+.p-changepass .changepass-form {
+  max-width: 250px;
+  margin: 0 auto;
+}
+/* line 5, ../../app/assets/sass/changepass.scss */
+.p-changepass .changepass-form button {
+  width: 100%;
+}

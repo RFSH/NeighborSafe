@@ -1,0 +1,65 @@
+@(form: Form[ChangePassForm], username: String)
+
+@base("NeighborSafe | Change Password") {
+    <div class="p-changepass">
+        <div class="ui menu inverted blue">
+            <a class="item" href="/">Home</a>
+            <a class="item" href="@routes.Application.profile()">Profile (@username)</a>
+            <a class="item active" href="@routes.Application.Password()">Change Password</a>
+            <div class="right menu">
+                <a class="item" href="@routes.Application.logout()">Logout</a>
+            </div>
+        </div>
+        <div class="ui raised segment">
+        @helper.form(action = routes.Application.changePassword, 'class -> "changepass-form ui form") {
+            <input type="hidden" hidden="hidden" name="username" value="@username">
+            <div class="field">
+                <label for="old_password">Old Password</label>
+                <input type="password" required="required" name="old_password" id="zipCode" placeholder="Old Password" value="@form("old_password").value" />
+                @if(form("old_password").hasErrors) {
+                    <div class="ui basic red pointing prompt label transition visible">
+
+                    @{
+                        form("old_password").errors.map { error => error.message }
+                    }
+                    </div>
+                }
+            </div>
+            <div class="field">
+                <label for="password">New Password</label>
+                <input type="password" required="required" name="password" id="password" placeholder="Password" value="@form("password").value" />
+                @if(form("password").hasErrors) {
+                    <div class="ui basic red pointing prompt label transition visible">
+
+                    @{
+                        form("password").errors.map { error => error.message }
+                    }
+                    </div>
+                }
+            </div>
+            <div class="field">
+                <label for="re_password">Confirm New Password</label>
+                <input type="password" required="required" name="re_password" id="re_password" placeholder="Confirm New Password" value="@form("re_password").value" />
+                @if(form("re_password").hasErrors) {
+                    <div class="ui basic red pointing prompt label transition visible">
+
+                    @{
+                        form("re_password").errors.map { error => error.message }
+                    }
+                    </div>
+                }
+            </div>
+            <button class="ui button green">
+                Submit
+            </button>
+
+        }
+
+        </div>
+        <div class="ui raised segment rf-footer">
+            <i class="copyright icon"></i>
+            <span>2015, RF, You think all rights are reserverd? Nah.</span>
+        </div>
+    </div>
+
+}

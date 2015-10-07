@@ -1,0 +1,231 @@
+@(neighbors: java.util.List[NeighborProfile], username: String, form: Form[NeighborQuery])
+
+    @base("NeighborSafe | Home") {
+        <div class="p-search">
+            <div class="ui menu inverted blue">
+                <a class="item active" href="/">Home</a>
+                <a class="item" href="@routes.Application.profile()">Profile (@username)</a>
+                <a class="item" href="@routes.Application.Password()">Change Password</a>
+                <div class="right menu">
+                    <a class="item" href="@routes.Application.logout()">Logout</a>
+                </div>
+            </div>
+            <div class="ui raised segment">
+                @*<h2>Neighbors</h2>*@
+                <div class="search-form">
+                @helper.form(action = routes.Application.searchNeighbors, 'class -> "ui form", 'method -> "GET") {
+                    <div class="ui icon input">
+                        <input type="text" name="address" class="search-input" placeholder="Street" value="@form("address").value">
+                        <i class="search icon"></i>
+                    </div>
+                    <button class="ui button green search-btn">Go</button>
+                    <br/>
+                    <button class="ui labeled icon button mini teal" id="open-advanced" type="button">
+                        <i class="down arrow icon"></i>
+                        Advanced Search
+                    </button>
+                    <div class="ui stacked segment teal" style="display : none ;" id="hidden-parts">
+                        <div class="three fields">
+                            <div class="field">
+                                <label for="cpr">CPR?</label>
+                                @helper.checkbox(form("cpr"), '_label -> "Yes", 'class -> "checkbox")
+                            </div>
+                            <div class="field">
+                                <label for="first_aid">First Aid?</label>
+                                @helper.checkbox(form("firstAid"), '_label -> "Yes", 'class -> "checkbox")
+                            </div>
+                            <div class="field">
+                                <label for="otherMedTrain">Medical Training</label>
+                                <input type="text" name="otherMedTrain" id="otherMedTrain" placeholder="Other Medical Trainings" value="@form("otherMedTrain").value" />
+                            </div>
+                        </div>
+                        <div class="three fields">
+                            <div class="field">
+                                <label for="haveGenerator">Generator?</label>
+                                @helper.checkbox(form("haveGenerator"), '_label -> "Yes", 'class -> "checkbox")
+                            </div>
+                            <div class="field">
+                                <label for="haveFood">Food and Water supplies?</label>
+                                @helper.checkbox(form("haveFood"), '_label -> "Yes", 'class -> "checkbox")
+                            </div>
+                            <div class="field">
+                                <label for="otherMedSupply">Any other medical supplies?</label>
+                                <input type="text" name="otherMedSupply" id="otherMedSupply" placeholder="Medical Supplies" value="@form("otherMedSupply").value" />
+                            </div>
+                        </div>
+                        <div class="three fields">
+                            <div class="field">
+                                <label for="languages">Language</label>
+                                <input type="text" name="languages" id="languages" placeholder="Languages" value="@form("languages").value" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>
+                <div class="ui dividing header">
+                    Neighbors <i class="footer-icon">*</i>
+                    @if(!neighbors.isEmpty) {
+                        <span class="rf-help">| @neighbors.size() Result(s)</span>
+                    }
+                </div>
+                <div class="ui fluid styled accordion">
+                    @for((neighbor, index) <- neighbors.zipWithIndex) {
+                        <div class="title">
+                            <div class="ui grid">
+                                <div class="three column row">
+                                    <span class="username column">
+                                        <i class="user icon"></i>
+                                        @neighbor.profileId
+                                    </span>
+                                    <span class="address column">
+                                        <i class="home icon"></i>
+                                        @neighbor.address, @neighbor.zipCode
+                                    </span>
+                                    <span class="phone column">
+                                        <i class="phone icon"></i>
+                                        @neighbor.homeNumber
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="content">
+                            <h4 class="ui dividing header">Abilities and Stuff</h4>
+                            <div class="ui grid">
+                                <div class="three wide column">
+                                    @if(neighbor.cpr) {
+                                        <i class="green icon checkmark"></i>
+                                    } else {
+                                        <i class="red icon remove"></i>
+                                    }
+                                <span class="label ui">CPR</span>
+                                </div>
+                                <div class="five wide column">
+                                    @if(neighbor.firstAid) {
+                                        <i class="green icon checkmark"></i>
+                                    } else {
+                                        <i class="red icon remove"></i>
+                                    }
+                                <span class="label ui">Basic First Aid</span>
+                                </div>
+                                <div class="eight wide column">
+                                    <span class="label ui">Other Medical Trainings:</span>
+                                    @if(neighbor.otherMedTrainings) {
+                                        @neighbor.otherMedTrainings
+                                    } else {
+                                        <i class="meh red icon"></i>
+                                    }
+                                </div>
+                            </div>
+                            <div class="ui grid">
+                                <div class="sixteen wide column">
+                                    <span class="label ui">Languages</span>
+                                    @if(neighbor.languages) {
+                                        <span>@neighbor.languages</span>
+                                    }else{
+                                        <span>They know nothing. <i class="meh red icon"></i></span>
+                                    }
+                                </div>
+                            </div>
+                            <h4 class="ui dividing header">Supplies</h4>
+                            <div class="ui grid">
+                                <div class="three wide column column">
+                                    @if(neighbor.haveGenerator) {
+                                        <i class="green icon checkmark"></i>
+                                    } else {
+                                        <i class="red icon remove"></i>
+                                    }
+                                <span class="label ui">Generator</span>
+                                </div>
+                                <div class="five wide column">
+                                    @if(neighbor.haveFood) {
+                                        <i class="green icon checkmark"></i>
+                                    } else {
+                                        <i class="red icon remove"></i>
+                                    }
+                                <span class="label ui">Food and Water Supplies</span>
+                                </div>
+                                <div class="eight wide column">
+                                    <span class="label ui">Other Medical Supplies:</span>
+                                    @if(neighbor.otherMedSupplies) {
+                                        @neighbor.otherMedSupplies
+                                    } else {
+                                        <i class="meh red icon"></i>
+                                    }
+                                </div>
+                            </div>
+                            <h4 class="ui dividing header">Utility Shut-offs</h4>
+                            <div class="ui grid">
+                                <div class="three column row">
+                                    <div class="column">
+                                        <span class="label ui">Gas</span>
+                                        <span>@neighbor.utilityGaz</span>
+                                    </div>
+                                    <div class="column">
+                                        <span class="label ui">Water</span>
+                                        <span>@neighbor.utilityWater</span>
+                                    </div>
+                                    <div class="column">
+                                        <span class="label ui">Electric</span>
+                                        <span>@neighbor.utilityElectric</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="ui dividing header">Family Info</h4>
+                            @if(!neighbor.peopleList.isEmpty) {
+                                <table class="ui celled table">
+                                    <thead>
+                                        <tr>
+                                            <th>Is Adult?</th>
+                                            <th>Name</th>
+                                            <th>Age</th>
+                                            <th>Email</th>
+                                            <th>Cell Number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @for(people <- neighbor.peopleList) {
+                                        <tr>
+                                            <td><i class="icon @if(people.isAdult){green checkmark}else{red remove}"></i></td>
+                                            <td>@people.name</td>
+                                            <td>@people.age</td>
+                                            <td>@people.email</td>
+                                            <td>@people.cellNumber</td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            } else {
+                                <div class="ui icon floating small message yellow">
+                                    <i class="meh icon"></i>
+                                    <div class="content">
+                                        <div class="header">404 Family Member Not Found.</div>
+                                        <p>Nobody lives here.</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    @if(neighbors.isEmpty) {
+                        <div class="ui message yellow icon floating">
+                            <i class="frown icon"></i>
+                            <div class="content">
+                                <div class="header">404 Neighbor Not Found</div>
+                                <p>There is no neighbor with these specification.</p>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="ui divider"></div>
+                <i class="footer-icon">*</i>
+                <span class="rf-help">Only users with the same Zip Code are considered as Neighbors. OK?</span>
+            </div>
+            <div class="ui raised segment rf-footer">
+                <i class="copyright icon"></i>
+                <span>2015, RF, You think all rights are reserverd? Nah.</span>
+            </div>
+        </div>
+
+
+    }

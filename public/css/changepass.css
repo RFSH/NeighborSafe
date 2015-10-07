@@ -1,0 +1,9 @@
+/* line 2, ../../app/assets/sass/changepass.scss */
+.p-changepass .changepass-form {
+  max-width: 250px;
+  margin: 0 auto;
+}
+/* line 5, ../../app/assets/sass/changepass.scss */
+.p-changepass .changepass-form button {
+  width: 100%;
+}

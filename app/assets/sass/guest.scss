@@ -1,0 +1,29 @@
+body{
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 13px;
+  background: none !important;
+  color: #3f3f3f;
+  height: inherit !important;
+}
+
+::selection{
+  background-color: #2185d0;
+  color: #fefefe;
+}
+
+.main-container{
+  margin-top: 2em;
+}
+
+a:hover{
+  color: #2185d0 !important;
+}
+
+html {
+  background: url("/assets/images/back.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: inherit !important;
+}
